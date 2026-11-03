@@ -1,0 +1,45 @@
+name: intl-review
+
+# GitHub 托管模式的 reusable workflow。目标仓库（如 omi-backend）放一个薄 caller 引用本文件，
+# 见 examples/omi-backend-intl-review.yml。模型和端点由 caller 的 with: 覆盖，默认智谱官方端点。
+# GITHUB_TOKEN 是 Actions 每次运行自动发的临时 token，无需人工配置；唯一要配的 secret 是 ZHIPU_API_KEY。
+
+on:
+  workflow_call:
+    inputs:
+      zhipu-model:
+        description: 智谱模型 id（发给对端的原样 id）
+        type: string
+        default: glm-5.3
+      zhipu-base-url:
+        description: Anthropic 兼容端点
+        type: string
+        default: https://open.bigmodel.cn/api/anthropic
+    secrets:
+      ZHIPU_API_KEY:
+        required: true
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      # GITHUB_TOKEN 权限只能从 caller 往下收紧；caller 必须至少给到这些
+      pull-requests: write
+      checks: write
+      contents: read
+    env:
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+      BASE_REF: ${{ github.event.pull_request.base.ref }}
+      PR_TITLE: ${{ github.event.pull_request.title }}
+    steps:
+      - name: intl-review
+        # 根 action，runner 自动下载整个 intl-review 仓库；固定版本可改为 @v1 之类的 tag
+        uses: zzy7517/intl-review@master
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          zhipu-api-key: ${{ secrets.ZHIPU_API_KEY }}
+          zhipu-model: ${{ inputs.zhipu-model }}
+          zhipu-base-url: ${{ inputs.zhipu-base-url }}

@@ -1,0 +1,37 @@
+name: intl-review
+description: 构建 intl-review 并执行托管模式审查（浅克隆 PR head + 只读工具 agent）
+
+# 放在仓库根：跨仓库 uses: zzy7517/intl-review@master 时 runner 下载整个仓库，
+# npm ci / tsc 构建都在 github.action_path 里完成，无需 caller 侧任何 token。
+
+inputs:
+  zhipu-api-key:
+    description: 智谱 API key
+    required: true
+  zhipu-model:
+    description: 模型 id（默认 glm-5.3）
+    required: false
+    default: ""
+  zhipu-base-url:
+    description: Anthropic 兼容端点（默认智谱官方）
+    required: false
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 22
+    - name: Build
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      run: npm ci && npm run build
+    - name: Review
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      env:
+        ZHIPU_API_KEY: ${{ inputs.zhipu-api-key }}
+        ZHIPU_MODEL: ${{ inputs.zhipu-model }}
+        ZHIPU_BASE_URL: ${{ inputs.zhipu-base-url }}
+      run: node dist/actions/review.js

@@ -1,0 +1,20 @@
+# 放到目标仓库（如 omi-backend）的 .github/workflows/intl-review.yml
+# 前置：仓库 Settings → Secrets → Actions 配 ZHIPU_API_KEY；
+#       阻塞合入需分支保护把 required check 指向 intl-review。
+
+name: intl-review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [cocome]
+
+jobs:
+  review:
+    uses: zzy7517/intl-review/.github/workflows/review.yml@master
+    secrets:
+      ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
+    # 可选覆盖（不写用默认值）：
+    # with:
+    #   zhipu-model: glm-5.3-flash
+    #   zhipu-base-url: https://open.bigmodel.cn/api/anthropic
