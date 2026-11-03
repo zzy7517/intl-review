@@ -1,0 +1,83 @@
+.env.example
+  s_53b05a991ab661::t_44fdce5b8d3425 1-18
+.github/workflows/review.yml
+  s_53b05a991ab661::t_bd6b3ec0dc5bb8 1-45
+.gitignore
+  s_53b05a991ab661::t_50be89e96f222d 1-6
+README.md
+  s_53b05a991ab661::t_13c48cc148336e 1-85
+action.yml
+  s_53b05a991ab661::t_f0c1d1a61c1b5a 1-37
+examples/omi-backend-intl-review.yml
+  s_53b05a991ab661::t_06d52eaf2a80e6 1-20
+package-lock.json
+  s_53b05a991ab661::t_8676af46a13222 1-1169
+package.json
+  s_53b05a991ab661::t_f84e9c837ba6fc 1-22
+src/actions/review.ts
+  s_53b05a991ab661::t_5794f5ebec5fe6 1-153
+src/app/config.test.ts
+  s_53b05a991ab661::t_1043cff06c8293 1-25
+src/app/config.ts
+  s_53b05a991ab661::t_232e0721fc4c7e 1-101
+src/app/index.ts
+  s_53b05a991ab661::t_0ae60d831fe6ea 1-50
+src/app/load-env.ts
+  s_53b05a991ab661::t_c672e9b3c60b25 1-21
+src/app/server.ts
+  s_53b05a991ab661::t_9e0f512478e7c7 1-134
+src/app/service.test.ts
+  s_53b05a991ab661::t_54bbb7a1674486 1-87
+src/app/service.ts
+  s_53b05a991ab661::t_5a54e98d1524ee 1-128
+src/app/store.test.ts
+  s_53b05a991ab661::t_f69dbaf4de940e 1-14
+src/app/store.ts
+  s_53b05a991ab661::t_b05f4f1fbb0c98 1-119
+src/app/webhook.test.ts
+  s_53b05a991ab661::t_2c70549c3cdd16 1-54
+src/app/webhook.ts
+  s_53b05a991ab661::t_cfab05b0cf3db6 1-66
+src/github/client.test.ts
+  s_53b05a991ab661::t_f0101123e3f015 1-58
+src/github/client.ts
+  s_53b05a991ab661::t_e206081e7efb68 1-182
+src/github/jwt.test.ts
+  s_53b05a991ab661::t_25a3993cf4189a 1-21
+src/github/jwt.ts
+  s_53b05a991ab661::t_abf369a27b6eed 1-17
+src/github/types.ts
+  s_53b05a991ab661::t_caf75095ab542c 1-28
+src/review/agent.test.ts
+  s_53b05a991ab661::t_ac4ad1e0c3aab3 1-129
+src/review/agent.ts
+  s_53b05a991ab661::t_52bbfb97843ab1 1-278
+src/review/comment.ts
+  s_53b05a991ab661::t_6e2f7c1a2d55a5 1-37
+src/review/diff.test.ts
+  s_53b05a991ab661::t_771d95f4f7f874 1-16
+src/review/diff.ts
+  s_53b05a991ab661::t_a804c9cf2c23d7 1-47
+src/review/prompt.test.ts
+  s_53b05a991ab661::t_200aa8a4685f2b 1-24
+src/review/prompt.ts
+  s_53b05a991ab661::t_8f76bcea3dca9f 1-98
+tsconfig.json
+  s_53b05a991ab661::t_1a342363771665 1-16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "c4ef938ee2f97d60b7502a31e531c466115a84ef",
+  "prompts": {},
+  "sessions": {
+    "s_53b05a991ab661": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f009d771-6f97-4424-8533-1692521227d2",
+        "model": "zhipu/glm-5.3"
+      },
+      "human_author": "zzy7517 <zz7517@proton.me>"
+    }
+  }
+}
